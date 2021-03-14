@@ -11,7 +11,7 @@ Collection of Ansible roles to setup servers and deploy a multi-master Kubernete
 ## Requirements
 ------------
 
-A deploy server with RHEL 8+ with ansible installed, a user with ssh-keys and ssh-key access to all nodes as root where you are going to deploy k8s on. 3 masters, 1 worker.
+A deploy server with RHEL 8+ with ansible installed, a user with ssh-keys and ssh-key access to all nodes and sudo access (need flags "--become-user root --ask-becom-pass") or ssh as root directly where you are going to deploy k8s on.
 
 ## Preparations
 --------------
