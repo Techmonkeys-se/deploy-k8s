@@ -55,6 +55,12 @@ This collection is a work in progress i use to learn ansible and kubernetes.
 - add storage (Longhorn?)
 - tag tasks in roles?
 
+## Good to know, Known issues
+----------------
+
+Sometimes kubelet fails to start after join, more information:
+https://github.com/kubernetes/kubernetes/issues/99305
+
 ## Contribution
 ------------------
 
