@@ -38,8 +38,8 @@
     - encrypt-secrets
 
 - hosts: k8s-master-0
-    vars_files:
-      - group_vars/all.yml
+  vars_files:
+    - group_vars/all.yml
   become: yes
 
   roles:
