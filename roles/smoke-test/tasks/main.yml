@@ -37,3 +37,6 @@
   register: rslt
 
 - debug: var=rslt.stdout_lines
+
+- name: Delete deployment when deployment
+  shell: kubectl delete -f /tmp/nginx.yml
