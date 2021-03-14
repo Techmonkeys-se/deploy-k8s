@@ -100,5 +100,5 @@
   - name: Enabling Bridge Firewall Rule
     shell: "echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
 
-  - name: Enabling Bridge Firewall Rule
+  - name: Enabling ipv4 forward Firewall Rule
     shell: "echo '1' > /proc/sys/net/ipv4/ip_forward"
