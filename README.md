@@ -16,7 +16,7 @@ A deploy server with RHEL 8+ with ansible installed, a user with ssh-keys and ss
 ## Preparations
 --------------
 
-- Clone the repo from the machine which you are going to use as bastion/deploy host.
+- Clone the repo to the machine which you are going to use as bastion/deploy host.
 
 ´´´
 git clone deploy-k8s CHANGE URL!
