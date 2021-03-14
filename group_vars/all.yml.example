@@ -1,0 +1,78 @@
+# vars file for k8s
+master0_addr: 192.168.0.33
+# api_dns: dns name in your LB/router that points to all nodes running API
+api_dns: k8s.domain.com
+cidr_v: 172.0.10.0/23
+# Virtual IP used with keepalived, not implemented but can be already added to kube config
+#virtual_ip: 
+clustername: kubernetes
+# Move encoded secret in vault?
+# To get encoded secret run on linux terminal:
+# head -c 32 /dev/urandom | base64
+encoded_secret: MyIBGF/Q0asiQimH7bmSgNhLmErKT9hps103lyLLREE=
+# haproxy port for etcd
+etcd_proxy_port: 2379
+bootstrap_token: abcdef.0123456789abcdef
+
+packages:
+- kubeadm
+- kubectl
+- kubelet
+- open-vm-tools
+- iproute-tc
+
+services:
+- kubelet
+- firewalld
+
+# Based on https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
+# https://coreos.com/flannel/docs/latest/troubleshooting.html (Firewalls section)
+# https://docs.projectcalico.org/getting-started/kubernetes/requirements (Network requirments)
+master_ports:
+- "6443/tcp"
+- "2379-2380/tcp"
+- "10250-10252/tcp"
+# Uncomment if flannel is the network plugin to be used
+#- "8285/udp"
+#- "8472/udp"
+# Uncomment if calico is to be used
+- "179/tcp"
+
+# If node is both master & worker
+# Role/playbook not implemented yet
+master_worker_ports:
+- "6443/tcp"
+- "2379-2380/tcp"
+- "10250-10252/tcp"
+- "30000-32767/tcp"
+# Uncomment if flannel is the network plugin to be used
+#- "8285/udp"
+#- "8472/udp"
+# Uncomment if calico is to be used
+- "179/tcp"
+
+worker_ports:
+- "10250/tcp"
+- "30000-32767/tcp"
+# Uncomment if calico is to be used
+- "179/tcp"
+# Uncomment if flannel is the network plugin to be used
+#- "8285/udp"
+#- "8472/udp"
+
+# URL to network deployment yaml
+# Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
+# 1. https://docs.projectcalico.org/manifests/calico.yaml
+# 2. https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+k8s_network_yaml: https://docs.projectcalico.org/manifests/calico.yaml
+
+# URL to network deployment yaml
+# Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
+# 1. https://url.to.your.yaml.com/ingress.yaml
+# 2. /local/directory/network-deployment.yaml
+# 3. use the one provided i have copied from https://github.com/haproxytech/kubernetes-ingress/blob/master/deploy/haproxy-ingress.yaml
+ingress_controller_yaml: /tmp/haproxy_ingress.yaml
+
+# Do not change token_file (generated automatically)
+token_file: join_token
+kubeadm_init_log: kubeadm_init.log

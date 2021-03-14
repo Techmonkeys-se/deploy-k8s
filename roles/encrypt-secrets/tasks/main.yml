@@ -1,0 +1,25 @@
+---
+# Read more at:
+# https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
+- name: Backup kube-apiserver.yaml
+  shell: cp /etc/kubernetes/manifests/kube-apiserver.yaml /tmp/kube-apiserver.yaml.$(date +%Y%m%d%H%M%S)
+  
+- name: copy encryption config file
+  template:
+    src: enc-config.yaml.j2
+    dest: /etc/kubernetes/pki/enc-config.yaml
+
+- name: Add runtime-config to kube-apiserver
+  lineinfile:
+    dest: /etc/kubernetes/manifests/kube-apiserver.yaml
+    regexp: '   - --encryption-provider-config=/etc/kubernetes/pki/enc-config.yaml'
+    line:   '    - --encryption-provider-config=/etc/kubernetes/pki/enc-config.yaml'
+    insertbefore: '- --etcd-servers='
+    backup: no
+
+- name: restart kubelet
+  systemd: 
+    name: kubelet 
+    enabled: yes 
+    daemon_reload: yes
+    state: started

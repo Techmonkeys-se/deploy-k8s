@@ -1,0 +1,95 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  token: {{ bootstrap_token }}
+  ttl: 24h0m0s
+  usages:
+  - signing
+  - authentication
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: {{ master0_addr }}
+  bindPort: 6443
+nodeRegistration:
+  criSocket: /var/run/containerd/containerd.sock
+  name: {{ inventory_hostname }}
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+---
+apiServer:
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta2
+certificatesDir: /etc/kubernetes/pki
+clusterName: {{clustername}}
+controllerManager: {}
+authorization:
+  mode: RBAC
+dns:
+  type: CoreDNS
+{% if groups["k8s-masters"] | length > 1 %}
+  certSANs:
+{% if virtual_ip is defined %}
+  - {{virtual_ip}}
+{% endif %}
+{% for master in groups["k8s-masters"] %}
+  - {{hostvars[master]['ansible_host']}}
+{% endfor %}
+{% endif %}
+  - localhost
+etcd:
+  endpoints:
+  - https://localhost:{{etcd_proxy_port}}
+{% for master in groups["k8s-masters"] %}
+  - https://{{hostvars[master]['ansible_host']}}:2379
+{% endfor %}
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.20.0
+controlPlaneEndpoint: {{ api_dns }}
+networking:
+  dnsDomain: cluster.local
+  serviceSubnet: 10.96.0.0/12
+  podSubnet: {{ cidr_v }}
+scheduler: {}
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+authentication:
+  anonymous:
+    enabled: false
+  webhook:
+    cacheTTL: 0s
+    enabled: true
+  x509:
+    clientCAFile: /etc/kubernetes/pki/ca.crt
+authorization:
+  mode: Webhook
+  webhook:
+    cacheAuthorizedTTL: 0s
+    cacheUnauthorizedTTL: 0s
+clusterDNS:
+- 10.96.0.10
+clusterDomain: cluster.local
+cpuManagerReconcilePeriod: 0s
+evictionPressureTransitionPeriod: 0s
+fileCheckFrequency: 0s
+healthzBindAddress: 127.0.0.1
+healthzPort: 10248
+httpCheckFrequency: 0s
+imageMinimumGCAge: 0s
+kind: KubeletConfiguration
+cgroupDriver: "systemd"
+logging: {}
+nodeStatusReportFrequency: 0s
+nodeStatusUpdateFrequency: 0s
+rotateCertificates: true
+runtimeRequestTimeout: 0s
+shutdownGracePeriod: 0s
+shutdownGracePeriodCriticalPods: 0s
+staticPodPath: /etc/kubernetes/manifests
+streamingConnectionIdleTimeout: 0s
+syncFrequency: 0s
+volumeStatsAggPeriod: 0s

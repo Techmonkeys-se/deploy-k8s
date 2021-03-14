@@ -1,0 +1,26 @@
+---
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    become: yes
+    selinux:
+      policy: targeted
+      state: permissive
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
+    tags: [ 'rhel', 'system', 'selinux' ]
+
+  - name: Disabling Swap on all nodes
+    shell: swapoff -a
+
+  - name: Commenting Swap entries in /etc/fstab
+    replace:
+     path: /etc/fstab
+     regexp: '(^/.*swap*)'
+     replace: '# \1'
+
+  - name: Add IPs to /etc/hosts on master and workers
+    lineinfile:
+      dest: /etc/hosts
+      regexp: '.*{{ item }}$'
+      line: "{{ hostvars[item].ansible_host }} {{item}}"
+      state: present
+    when: hostvars[item].ansible_host is defined
+    with_items: "{{ groups.all }}"

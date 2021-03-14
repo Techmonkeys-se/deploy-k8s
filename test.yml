@@ -1,0 +1,21 @@
+---
+- name: Network Getting Started First Playbook
+  connection: ansible.netcommon.network_cli
+  gather_facts: false
+  hosts: localhost
+  vars:
+    input : "{{ lookup('kubeadm_init.log') }}"
+    target: "{{ input | regex_replace('\\Using certificate key\\s*(.*)', '\\1')}}"
+  tasks:
+
+#    - name: testing
+#      debug:
+#        msg: "{{target }}"
+
+    - name: test
+      shell: cat kubeadm_init.log | grep -A1 'Using certificate key' | grep -v "Using certificate key"
+      register: op
+    
+    - name: fuck off
+      debug:
+        msg: "{{op.stdout_lines}}"

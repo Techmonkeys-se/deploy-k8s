@@ -1,0 +1,4 @@
+group_vars/all.yml
+inventory/k8shosts
+kubeadm_init.log
+join_token

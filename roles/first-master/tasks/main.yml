@@ -1,0 +1,68 @@
+---
+  - name: Pulling images required for setting up a Kubernetes cluster
+    shell: kubeadm config images pull
+
+  - name: Resetting kubeadm
+    shell: kubeadm reset -f
+    register: output
+
+  - name: Copy config to master0
+    template:
+      src: kubeadm-config.yaml
+      dest: /tmp/kubeadm-config.yaml
+
+  - name: Initializing Kubernetes cluster
+    shell: kubeadm init --config=/tmp/kubeadm-config.yaml --upload-certs 2>&1 | tee /tmp/kubeadm_init.log
+    register: output
+  
+  - name: Copying required files
+    shell: |
+     mkdir -p $HOME/.kube
+     sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+     sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+  - name: "Cluster token"
+    shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
+    register: K8S_TOKEN
+
+  - name: "CA Hash"
+    shell: openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+    register: K8S_MASTER_CA_HASH
+
+  - name: CA Key
+    shell: cat /tmp/kubeadm_init.log | grep -A1 'Using certificate key' | grep -v "Using certificate key"
+    register: K8S_MASTER_CA_KEY
+
+  - name: "Add K8S Token and Hash to dummy host"
+    add_host:
+      name:   "K8S_TOKEN_HOLDER"
+      token:  "{{ K8S_TOKEN.stdout }}"
+      hash:   "{{ K8S_MASTER_CA_HASH.stdout }}"
+      key:    "{{ K8S_MASTER_CA_KEY.stdout }}"
+
+  - name: Show K8S_TOKEN_HOLDER token
+    debug:
+      msg: "[Master0] K8S_TOKEN_HOLDER K8S token is {{ hostvars['K8S_TOKEN_HOLDER']['token'] }}"
+
+  - name: Show K8S_TOKEN_HOLDER hash
+    debug:
+      msg: "[Master0] K8S_TOKEN_HOLDER K8S Hash is  {{ hostvars['K8S_TOKEN_HOLDER']['hash'] }}"
+
+  - name: Show K8S_TOKEN_HOLDER key
+    debug:
+      msg: "[Master0] K8S_TOKEN_HOLDER K8S key is  {{ hostvars['K8S_TOKEN_HOLDER']['key'] }}"
+  
+  - name: Storing Logs and Generated token for future purpose.
+    local_action: copy content={{ output.stdout }} dest={{ kubeadm_init_log }}
+    become: False
+
+  - name: Install Network Add-on
+    command: kubectl apply -f {{k8s_network_yaml}}
+
+  - name: Copy ingress controller yaml to node (remove when gitted)
+    copy:
+      src: haproxy_ingress.yaml
+      dest: /tmp/haproxy_ingress.yaml
+
+  - name: Install ingress controller
+    command: kubectl apply -f {{ingress_controller_yaml}}
