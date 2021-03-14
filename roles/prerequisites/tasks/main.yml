@@ -4,8 +4,6 @@
     selinux:
       policy: targeted
       state: permissive
-    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
-    tags: [ 'rhel', 'system', 'selinux' ]
 
   - name: Disabling Swap on all nodes
     shell: swapoff -a
