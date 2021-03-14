@@ -76,3 +76,7 @@ ingress_controller_yaml: /tmp/haproxy_ingress.yaml
 # Do not change token_file (generated automatically)
 token_file: join_token
 kubeadm_init_log: kubeadm_init.log
+
+
+# Smoke-test
+smoke_test_node_port: 31231
