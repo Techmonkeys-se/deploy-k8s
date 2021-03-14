@@ -4,7 +4,7 @@
 
   - name: Resetting kubeadm
     shell: kubeadm reset -f
-    register: output
+#    register: output
 
   - name: Copy config to master0
     template:
