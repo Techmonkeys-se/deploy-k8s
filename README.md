@@ -28,6 +28,8 @@ cd deploy-k8s
 - Update all variables to suit your deployment
 ´´´nano group_vars/all.yml´´´
 
+- Update your internal dns to point to each server hostname & and api_dns, dns name in your LB/router that points to all nodes running API
+
 ## Install Kubernetes
 ------------
 
