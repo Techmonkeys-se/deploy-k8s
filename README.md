@@ -48,6 +48,7 @@ This collection is a work in progress i use to learn ansible and kubernetes.
 ----------------
 
 - Clean up script
+- add RBAC config?
 - add flux, add backup
 - add storage (Longhorn?)
 - tag tasks in roles?
