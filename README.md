@@ -31,7 +31,9 @@ cd deploy-k8s
 ## Install Kubernetes
 ------------
 
-´´´ansible-playbook -i inventory/k8shosts deploy-k8s.yml´´´
+´´´
+ansible-playbook -i inventory/k8shosts deploy-k8s.yml
+´´´
 
 Will init the first master and the rest of the servers you have configured in hosts file.
 
