@@ -30,7 +30,7 @@
   shell: "curl http://{{ item }}:{{ smoke_test_node_port }}"
   register: result
   until: result.stdout.find("nginx") != -1
-  with_items: "{{ groups['k8s-workers'] }}"
+  with_items: "{{ groups['k8s-worker-nodes'] }}"
 
 - name: Get kubernetes no, po, svc
   shell: kubectl get no,po,svc --all-namespaces
