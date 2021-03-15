@@ -1,7 +1,9 @@
 ---
   - name: Install open-iscsi on Storage nodes
     yum:
-      name: iscsi-initiator-utils nfs-utils
+      name: 
+        - iscsi-initiator-utils
+        - nfs-utils
       state: present
 
   - name: Add storage-node label
