@@ -21,14 +21,10 @@
     delegate_to: localhost
     template:
       src: longhorn.yaml
-      dst: /tmp/longhorn.yaml
+      dest: /tmp/longhorn.yaml
+    run_once: true
 
   - name: Kubectl apply -f longhorn.yaml
     delegate_to: localhost
     shell: kubectl apply -f tmp/longhorn.yaml
     run_once: true
-
-  
-
-
-  
