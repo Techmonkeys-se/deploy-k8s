@@ -7,6 +7,12 @@
       state: present
     become: yes
 
+  - name: Starting and Enabling the required services
+    service:
+     name: iscsid
+     state: started
+     enabled: yes
+
   - name: Add storage-node label
     delegate_to: localhost
     shell: kubectl label nodes {{ inventory_hostname }} node.longhorn.io/create-default-disk=storage
