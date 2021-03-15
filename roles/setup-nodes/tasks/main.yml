@@ -59,13 +59,6 @@
     get_url:
       url: https://download.docker.com/linux/centos/docker-ce.repo
       dest: /etc/yum.repos.d/docker-ce.repo
-  
-  - name: Enable Docker Edge repo
-      ini_file:
-        dest: /etc/yum.repos.d/docker-ce.repo
-        section: 'docker-ce-edge'
-        option: enabled
-        value: 0
 
   - name: Installing required packages
     yum:
