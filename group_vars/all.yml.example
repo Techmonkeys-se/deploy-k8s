@@ -20,6 +20,11 @@ packages:
 - kubelet
 - open-vm-tools
 - iproute-tc
+- firewalld
+- yum-utils 
+- device-mapper-persistent-data
+- lvm2
+- containerd.io
 
 services:
 - kubelet

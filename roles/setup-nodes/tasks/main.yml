@@ -54,25 +54,23 @@
 
   - name: Apply sysctl params without reboot
     shell: sudo sysctl --system
+  
+  - name: Add DockerCE repository
+    yum_repository:
+      name: DockerCE
+      description: DockerCE Repository
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
 
-# change task to use yum module instead! ADD to todo
-  - name: Installing containerd.io and firewalld
-    shell: |
-     yum update -y && yum install firewalld -y
-     yum install -y yum-utils device-mapper-persistent-data lvm2
-     yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-     yum install -y containerd.io
+  - name: Installing required packages
+    yum:
+     name: "{{ packages }}"
+     state: present
 
   - name: Configure & restart containerd
     shell: |
       sudo mkdir -p /etc/containerd
       sudo containerd config default | sudo tee /etc/containerd/config.toml
       sudo systemctl restart containerd
-
-  - name: Installing required packages
-    yum:
-     name: "{{ packages }}"
-     state: present
 
   - name: Starting and Enabling the required services
     service:
