@@ -37,6 +37,7 @@
   - name: kubectl autocomplete
     delegate_to: localhost
     shell: echo "source <(kubectl completion bash)" >> ~/.bashrc
+    become: no
 
   - name: "Cluster token"
     shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
