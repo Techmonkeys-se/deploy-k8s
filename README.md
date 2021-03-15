@@ -22,6 +22,8 @@ A deploy server with RHEL 8+ with ansible installed, a user with ssh-keys and ss
 cd deploy-k8s
 ```
 
+- install kubectl on server you deploy from, read here: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
 - Edit the inventory (inventory/k8shosts)
 
 - Update all variables to suit your deployment
