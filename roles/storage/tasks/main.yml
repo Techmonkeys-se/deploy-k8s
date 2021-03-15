@@ -10,15 +10,17 @@
   - name: Add storage-node label
     delegate_to: localhost
     shell: kubectl label nodes {{ inventory_hostname }} node.longhorn.io/create-default-disk=storage
+    ignore_errors: True
 
   - name: Add create default disk annotation to node
     delegate_to: localhost
     shell: kubectl annotate nodes {{ inventory_hostname }} node.longhorn.io/default-disks-config='[ { "name":"sasdisk", "path":"/var/lib/longhorn/storage/", "allowScheduling":true, "storageReserved":10485760, "tags":[ "storage", "sasdisk" ] }]'
+    ignore_errors: True
 
   - name: Kubectl apply -f longhorn.yaml
     delegate_to: localhost
-
     shell: Kubectl apply -f longhorn.yaml
+    run_once: true
 
   
 
