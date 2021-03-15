@@ -32,6 +32,10 @@
       src: /etc/kubernetes/admin.conf
       dst: $HOME/.kube/config
 
+  - name: kubectl autocomplete
+    delegate_to: localhost
+    shell: echo "source <(kubectl completion bash)" >> ~/.bashrc
+
   - name: "Cluster token"
     shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
     register: K8S_TOKEN
