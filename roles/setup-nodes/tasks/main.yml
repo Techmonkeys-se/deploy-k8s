@@ -97,3 +97,9 @@
 
   - name: Enabling ipv4 forward Firewall Rule
     shell: "echo '1' > /proc/sys/net/ipv4/ip_forward"
+
+  - name: reload service NetworkManager
+    systemd:
+      name: NetworkManager
+      state: stopped
+      enabled: no
