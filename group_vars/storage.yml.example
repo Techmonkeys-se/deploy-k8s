@@ -17,7 +17,7 @@ guaranteed_engine_cpu: 0.25
 default_longhorn_static_storage_class: longhorn-static
 backupstore_poll_interval: 300
 taint_toleration: key1=node-role.kubernetes.io/master:NoSchedule
-priority_class: high_piority
+priority_class: high-piority
 auto_salvage: true
 auto_delete_pod_when_volume_detached_unexpectedly: true
 disable_scheduling_on_cordoned_node: true

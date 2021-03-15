@@ -1,5 +1,5 @@
 ---
-- hosts: k8s-storage-nodes
+- hosts: k8s
   vars_files:
     - group_vars/storage.yml
 
