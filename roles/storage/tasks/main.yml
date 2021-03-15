@@ -5,6 +5,7 @@
         - iscsi-initiator-utils
         - nfs-utils
       state: present
+    become: yes
 
   - name: Add storage-node label
     delegate_to: localhost

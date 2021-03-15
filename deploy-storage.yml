@@ -2,7 +2,6 @@
 - hosts: k8s-storage-nodes
   vars_files:
     - group_vars/storage.yml
-  become: yes
 
   roles: 
     - storage
