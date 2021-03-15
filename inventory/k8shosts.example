@@ -9,6 +9,9 @@ k8s-master2.domain.com ansible_host=192.168.0.35
 k8s-worker0.domain.com ansible_host=192.168.0.36
 #k8s-worker1.domain.com ansible_host=192.168.0.37
 
+[k8s-storage-nodes:children]
+k8s-master-nodes
+k8s-master-0
 
 [k8s:children]
 k8s-worker-nodes
