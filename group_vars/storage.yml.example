@@ -2,6 +2,7 @@
 # Read more at:
 # https://longhorn.io/docs/1.1.0/references/settings/
 
+backup_target:
 backup_target_credential_secret: 
 allow_recurring_job_while_volume_detached:
 create_default_disk_labeled_nodes: true
