@@ -88,7 +88,7 @@
     with_items: "{{ master_ports if ('k8s-master-nodes' in group_names) else worker_ports }}"
 
   - name: Masquerade external zone
-    firewalld: zone=external masquerade=yes permanent=true state=enabled
+    firewalld: zone=public masquerade=yes permanent=true state=enabled
   
   - name: reload service firewalld
     systemd:
