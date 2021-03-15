@@ -2,32 +2,32 @@
 # Read more at:
 # https://longhorn.io/docs/1.1.0/references/settings/
 
-backup-target-credential-secret: 
-allow-recurring-job-while-volume-detached:
-create-default-disk-labeled-nodes: true
-default-data-path: /var/lib/longhorn/storage/
-replica-soft-anti-affinity: false
-storage-over-provisioning-percentage: 200
-storage-minimal-available-percentage: 5
-upgrade-checker: true
-default-replica-count: 3
-default-data-locality: disabled
-guaranteed-engine-cpu: 0.25
-default-longhorn-static-storage-class: longhorn-static
-backupstore-poll-interval: 300
-taint-toleration: key1=node-role.kubernetes.io/master:NoSchedule
-priority-class: high-piority
-auto-salvage: true
-auto-delete-pod-when-volume-detached-unexpectedly: true
-disable-scheduling-on-cordoned-node: true
-replica-zone-soft-anti-affinity: true
-volume-attachment-recovery-policy: wait
-node-down-pod-deletion-policy: do-nothing
-allow-node-drain-with-last-healthy-replica: false
-mkfs-ext4-parameters:
-disable-replica-rebuild: false
-replica-replenishment-wait-interval: 600
-disable-revision-counter: false
-system-managed-pods-image-pull-policy: if-not-present
-allow-volume-creation-with-degraded-availability: true
-auto-cleanup-system-generated-snapshot: true
+backup_target_credential_secret: 
+allow_recurring_job_while_volume_detached:
+create_default_disk_labeled_nodes: true
+default_data_path: /var/lib/longhorn/storage/
+replica_soft_anti_affinity: false
+storage_over_provisioning_percentage: 200
+storage_minimal_available_percentage: 5
+upgrade_checker: true
+default_replica_count: 3
+default_data_locality: disabled
+guaranteed_engine_cpu: 0.25
+default_longhorn_static_storage_class: longhorn-static
+backupstore_poll_interval: 300
+taint_toleration: key1=node-role.kubernetes.io/master:NoSchedule
+priority_class: high_piority
+auto_salvage: true
+auto_delete_pod_when_volume_detached_unexpectedly: true
+disable_scheduling_on_cordoned_node: true
+replica_zone_soft_anti_affinity: true
+volume_attachment_recovery_policy: wait
+node_down_pod_deletion_policy: do-nothing
+allow_node_drain_with_last_healthy_replica: false
+mkfs_ext4_parameters:
+disable_replica_rebuild: false
+replica_replenishment_wait_interval: 600
+disable_revision_counter: false
+system_managed_pods_image_pull_policy: if-not-present
+allow_volume_creation_with_degraded_availability: true
+auto_cleanup_system_generated_snapshot: true
