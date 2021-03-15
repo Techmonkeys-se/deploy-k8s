@@ -17,9 +17,15 @@
     shell: kubectl annotate nodes {{ inventory_hostname }} node.longhorn.io/default-disks-config='[ { "name":"sasdisk", "path":"/var/lib/longhorn/storage/", "allowScheduling":true, "storageReserved":10485760, "tags":[ "storage", "sasdisk" ] }]'
     ignore_errors: True
 
+  - name: Create longhorn yaml from template
+    delegate_to: localhost
+    template:
+      src: longhorn.yaml
+      dst: /tmp/longhorn.yaml
+
   - name: Kubectl apply -f longhorn.yaml
     delegate_to: localhost
-    shell: kubectl apply -f longhorn.yaml
+    shell: kubectl apply -f template/longhorn.yaml
     run_once: true
 
   
