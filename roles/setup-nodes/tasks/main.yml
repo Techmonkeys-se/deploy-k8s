@@ -56,9 +56,7 @@
     shell: sudo sysctl --system
   
   - name: Add DockerCE repository
-    get_url:
-      url: https://download.docker.com/linux/centos/docker-ce.repo
-      dest: /etc/yum.repos.d/docker-ce.repo
+    shell: sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
   - name: Installing required packages
     yum:
