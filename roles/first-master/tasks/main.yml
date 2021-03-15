@@ -26,11 +26,13 @@
     file:
       path: $HOME/.kube/
       state: directory
+    become: no
 
   - name: Fetch kubeconfig
     fetch:
       src: /etc/kubernetes/admin.conf
       dst: $HOME/.kube/config
+    become: no
 
   - name: kubectl autocomplete
     delegate_to: localhost
