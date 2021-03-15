@@ -1,4 +1,5 @@
 group_vars/all.yml
+group_vars/storage.yml
 inventory/k8shosts
 kubeadm_init.log
 join_token

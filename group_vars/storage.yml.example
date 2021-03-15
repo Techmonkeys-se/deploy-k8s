@@ -1,0 +1,33 @@
+# Vars file for longhorn deployment default settings:
+# Read more at:
+# https://longhorn.io/docs/1.1.0/references/settings/
+
+backup-target-credential-secret: 
+allow-recurring-job-while-volume-detached:
+create-default-disk-labeled-nodes: true
+default-data-path: /var/lib/longhorn/storage/
+replica-soft-anti-affinity: false
+storage-over-provisioning-percentage: 200
+storage-minimal-available-percentage: 5
+upgrade-checker: true
+default-replica-count: 3
+default-data-locality: disabled
+guaranteed-engine-cpu: 0.25
+default-longhorn-static-storage-class: longhorn-static
+backupstore-poll-interval: 300
+taint-toleration: key1=node-role.kubernetes.io/master:NoSchedule
+priority-class: high-piority
+auto-salvage: true
+auto-delete-pod-when-volume-detached-unexpectedly: true
+disable-scheduling-on-cordoned-node: true
+replica-zone-soft-anti-affinity: true
+volume-attachment-recovery-policy: wait
+node-down-pod-deletion-policy: do-nothing
+allow-node-drain-with-last-healthy-replica: false
+mkfs-ext4-parameters:
+disable-replica-rebuild: false
+replica-replenishment-wait-interval: 600
+disable-revision-counter: false
+system-managed-pods-image-pull-policy: if-not-present
+allow-volume-creation-with-degraded-availability: true
+auto-cleanup-system-generated-snapshot: true
