@@ -19,7 +19,7 @@
 
   - name: Kubectl apply -f longhorn.yaml
     delegate_to: localhost
-    shell: Kubectl apply -f longhorn.yaml
+    shell: kubectl apply -f longhorn.yaml
     run_once: true
 
   
