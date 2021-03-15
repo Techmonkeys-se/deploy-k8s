@@ -18,10 +18,9 @@ A deploy server with RHEL 8+ with ansible installed, a user with ssh-keys and ss
 
 - Clone the repo to the machine which you are going to use as bastion/deploy host.
 
-´´´
-git clone deploy-k8s CHANGE URL!
+```git clone deploy-k8s CHANGE URL!
 cd deploy-k8s
-´´´
+```
 
 - Edit the inventory (inventory/k8shosts)
 
@@ -33,11 +32,9 @@ cd deploy-k8s
 ## Install Kubernetes
 ------------
 
-´´´
-ansible-playbook -i inventory/k8shosts deploy-k8s.yml
+`ansible-playbook -i inventory/k8shosts deploy-k8s.yml`
 or
-ansible-playbook -i inventory/k8shosts deploy-k8s.yml --become-user root --ask-become-pass
-´´´
+`ansible-playbook -i inventory/k8shosts deploy-k8s.yml --become-user root --ask-become-pass`
 
 Will init the first master and the rest of the servers you have configured in hosts file.
 
