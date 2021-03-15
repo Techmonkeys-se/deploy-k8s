@@ -21,6 +21,17 @@
      sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
      sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+  - name: Create kubeconfig folder on localhost homefolder
+    delegate_to: localhost
+    file:
+      path: $HOME/.kube/
+      state: directory
+
+  - name: Fetch kubeconfig
+    fetch:
+      src: /etc/kubernetes/admin.conf
+      dst: $HOME/.kube/config
+
   - name: "Cluster token"
     shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
     register: K8S_TOKEN
