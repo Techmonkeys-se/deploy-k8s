@@ -1,22 +1,19 @@
 ---
-  - name: Creating a repository file for Kubernetes
-    file:
-     path: /etc/yum.repos.d/kubernetes.repo
-     state: touch
+  - name: Adding Kuberenetes repo
+    yum_repository:
+      name: Kubernetes
+      description: Kubernetes yum repository
+      baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+      gpgkey: 
+        - https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        - https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+      gpgcheck: yes
+      repo_gpgcheck: yes
 
-  - name: Adding repository details in Kubernetes repo file.
-    blockinfile:
-     path: /etc/yum.repos.d/kubernetes.repo
-     block: |
-      [kubernetes]
-      name=Kubernetes
-      baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
-      enabled=1
-      gpgcheck=1
-      repo_gpgcheck=1
-      gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
-        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-  
+  - name: Update repo cache
+    yum:
+      update_cache: yes
+
   - name: Add the br_netfilter module
     modprobe:
       name: br_netfilter
