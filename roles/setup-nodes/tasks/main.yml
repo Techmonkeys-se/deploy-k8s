@@ -10,6 +10,15 @@
       gpgcheck: yes
       repo_gpgcheck: yes
 
+  - name: Adding DockerCE repo
+    yum_repository:
+      name: docker-ce-stable
+      description: Docker CE Stable - $basearch
+      baseurl: https://download.docker.com/linux/centos/$releasever/$basearch/stable
+      gpgkey: https://download.docker.com/linux/centos/gpg
+      gpgcheck: yes
+      repo_gpgcheck: yes
+
   - name: Update repo cache
     yum:
       update_cache: yes
@@ -50,21 +59,28 @@
       net.bridge.bridge-nf-call-ip6tables = 1
 
   - name: Apply sysctl params without reboot
-    shell: sudo sysctl --system
-  
-  - name: Add DockerCE repository
-    shell: sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    shell: sysctl --system
 
   - name: Installing required packages
     yum:
      name: "{{ packages }}"
      state: present
 
-  - name: Configure & restart containerd
+  - name: Create containerd folder in etc
+    file:
+      path: /etc/containerd
+      state: directory
+      mode: '0755'
+
+  - name: Configure containerd
     shell: |
-      sudo mkdir -p /etc/containerd
-      sudo containerd config default | sudo tee /etc/containerd/config.toml
-      sudo systemctl restart containerd
+      containerd config default | tee /etc/containerd/config.toml
+
+  - name: Restarting containerd service
+    service:
+     name: containerd
+     state: restarted
+     enabled: yes
 
   - name: Starting and Enabling the required services
     service:
@@ -78,22 +94,19 @@
      port: "{{ item }}"
      state: enabled
      permanent: yes
-     immediate: yes
-    with_items: "{{ master_ports if ('k8s_master_nodes' in group_names) else worker_ports }}"
+    with_items: "{{ master_ports if ('k8s_masters' in group_names) else worker_ports }}"
 
   - name: Masquerade external zone
-    firewalld: zone=public masquerade=yes permanent=true state=enabled
+    firewalld: 
+      zone: public
+      masquerade: "yes"
+      permanent: yes
+      state: enabled
   
   - name: reload service firewalld
     systemd:
       name: firewalld
       state: reloaded
-
-  - name: Enabling Bridge Firewall Rule
-    shell: "echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables"
-
-  - name: Enabling ipv4 forward Firewall Rule
-    shell: "echo '1' > /proc/sys/net/ipv4/ip_forward"
 
   - name: Stop & disable NetworkManager service
     systemd:
