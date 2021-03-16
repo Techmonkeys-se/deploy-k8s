@@ -1,7 +1,0 @@
----
-- hosts: k8s
-  vars_files:
-    - group_vars/storage.yml
-
-  roles: 
-    - storage
