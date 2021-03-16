@@ -16,7 +16,7 @@ default_data_locality: disabled
 guaranteed_engine_cpu: 0.25
 default_longhorn_static_storage_class: longhorn-static
 backupstore_poll_interval: 300
-taint_toleration: key1=node-role.kubernetes.io/master:NoSchedule
+taint_toleration: key1=node-role.kubernetes.io/master:NoSchedule;key2=node-role.kubernetes.io/control-plane:NoSchedule
 priority_class: high-piority
 auto_salvage: true
 auto_delete_pod_when_volume_detached_unexpectedly: true
