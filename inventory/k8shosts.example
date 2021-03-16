@@ -1,30 +1,30 @@
-[k8s-master-0]
+[k8s_master_0]
 k8s-master0.domain.com ansible_host=192.168.0.33
 
-[k8s-master-nodes]
+[k8s_master_nodes]
 k8s-master1.domain.com ansible_host=192.168.0.34
 k8s-master2.domain.com ansible_host=192.168.0.35
 
-[k8s-worker-nodes]
+[k8s_worker_nodes]
 k8s-worker0.domain.com ansible_host=192.168.0.36
 #k8s-worker1.domain.com ansible_host=192.168.0.37
 
-[k8s-storage-nodes:children]
-k8s-master-nodes
-k8s-master-0
+[k8s_storage_nodes:children]
+k8s_master_nodes
+k8s_master_0
 
 [k8s:children]
-k8s-worker-nodes
-k8s-master-nodes
-k8s-master-0
+k8s_worker_nodes
+k8s_master_nodes
+k8s_master_0
 
-[k8s-etcd:children]
-k8s-master-nodes
-k8s-master-0
+[k8s_etcd:children]
+k8s_master_nodes
+k8s_master_0
 
-[k8s-masters:children]
-k8s-master-nodes
-k8s-master-0
+[k8s_masters:children]
+k8s_master_nodes
+k8s_master_0
 
 [k8s:vars]
 #ansible_password=verysecret
