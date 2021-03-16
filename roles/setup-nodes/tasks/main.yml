@@ -82,7 +82,7 @@
      state: enabled
      permanent: yes
      immediate: yes
-    with_items: "{{ master_ports if ('k8s-master-nodes' in group_names) else worker_ports }}"
+    with_items: "{{ master_ports if ('k8s_master_nodes' in group_names) else worker_ports }}"
 
   - name: Masquerade external zone
     firewalld: zone=public masquerade=yes permanent=true state=enabled

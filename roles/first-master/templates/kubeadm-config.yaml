@@ -33,7 +33,7 @@ dns:
 {% if virtual_ip is defined %}
   - {{virtual_ip}}
 {% endif %}
-{% for master in groups["k8s-masters"] %}
+{% for master in groups["k8s_masters"] %}
   - {{hostvars[master]['ansible_host']}}
 {% endfor %}
 {% endif %}
