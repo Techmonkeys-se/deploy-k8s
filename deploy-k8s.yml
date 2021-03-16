@@ -1,5 +1,5 @@
 ---
-- hosts: k8s-master-0
+- hosts: k8s_master_0
   vars_files:
     - group_vars/all.yml
   become: yes
@@ -9,7 +9,7 @@
     - setup-nodes
     - first-master
 
-- hosts: k8s-master-nodes
+- hosts: k8s_master_nodes
   vars_files:
     - group_vars/all.yml
   become: yes
@@ -19,7 +19,7 @@
     - setup-nodes
     - masters
 
-- hosts: k8s-worker-nodes
+- hosts: k8s_worker_nodes
   vars_files:
     - group_vars/all.yml
   become: yes
@@ -29,7 +29,7 @@
     - setup-nodes
     - workers
 
-- hosts: k8s-etcd
+- hosts: k8s_etcd
   vars_files:
     - group_vars/all.yml
   become: yes
@@ -37,7 +37,7 @@
   roles:
     - encrypt-secrets
 
-#- hosts: k8s-master-0
+#- hosts: k8s_master_0
 #  vars_files:
 #    - group_vars/all.yml
 #  become: yes

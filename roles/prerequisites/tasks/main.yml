@@ -5,14 +5,14 @@
       policy: targeted
       state: permissive
 
-  - name: Disabling Swap on all nodes
-    shell: swapoff -a
+  - name: Disable Swap on all nodes (swapoff -a)
+    command: swapoff --all
 
-  - name: Commenting Swap entries in /etc/fstab
-    replace:
-     path: /etc/fstab
-     regexp: '(^/.*swap*)'
-     replace: '# \1'
+  - name: Disabling Swap on all nodes (fstab)
+    mount:
+      path: none
+      fstype: swap
+      state: absent
 
   - name: Add IPs to /etc/hosts on master and workers
     lineinfile:

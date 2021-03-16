@@ -17,13 +17,13 @@
     delegate_to: localhost
     shell: kubectl label nodes {{ inventory_hostname }} node.longhorn.io/create-default-disk=storage
     ignore_errors: True
-    when: inventory_hostname == groups.k8s-storage-nodes
+    when: inventory_hostname == groups.k8s_storage_nodes
 
   - name: Add create default disk annotation to node
     delegate_to: localhost
     shell: kubectl annotate nodes {{ inventory_hostname }} node.longhorn.io/default-disks-config='[ { "name":"sasdisk", "path":"/var/lib/longhorn/storage/", "allowScheduling":true, "storageReserved":10485760, "tags":[ "storage", "sasdisk" ] }]'
     ignore_errors: True
-    when: inventory_hostname == groups.k8s-storage-nodes
+    when: inventory_hostname == groups.k8s_storage_nodes
 
   - name: Create longhorn yaml from template
     delegate_to: localhost
