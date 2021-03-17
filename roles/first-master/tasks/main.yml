@@ -18,8 +18,8 @@
   - name: Copying required files
     shell: |
      mkdir -p $HOME/.kube
-     sudo cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
-     sudo chown $(id -u):$(id -g) $HOME/.kube/config
+     cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
+     chown $(id -u):$(id -g) $HOME/.kube/config
 
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
@@ -30,7 +30,7 @@
 
   - name: Fetch kubeconfig
     fetch:
-      src: /etc/kubernetes/admin.conf
+      src: $HOME/.kube/config
       dest: $HOME/.kube/config
     become: no
 
