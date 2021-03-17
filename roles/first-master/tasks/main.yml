@@ -40,7 +40,7 @@
     become: no
 
   - name: "Cluster token"
-    shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
+    shell: kubeadm token list | grep bootstrappers | cut -d ' ' -f1
     register: K8S_TOKEN
 
   - name: "CA Hash"
