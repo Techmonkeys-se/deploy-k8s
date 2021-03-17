@@ -18,7 +18,6 @@ packages:
 - kubeadm
 - kubectl
 - kubelet
-- open-vm-tools
 - iproute-tc
 - firewalld
 - yum-utils 
