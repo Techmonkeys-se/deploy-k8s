@@ -16,4 +16,4 @@
 
   - name: "Kubeadmn join Master"
     shell: >
-      kubeadm join {{api_dns}}:6443 --token {{ hostvars['K8S_TOKEN_HOLDER']['token'] }} --discovery-token-ca-cert-hash sha256:{{ hostvars['K8S_TOKEN_HOLDER']['hash'] }} --control-plane --certificate-key {{ hostvars['K8S_TOKEN_HOLDER']['key'] }} 2>&1 | tee /tmp/kubeadm_init.log
+      kubeadm join {{api_dns}}:6443 --token {{ hostvars['K8S_TOKEN_HOLDER']['token'] }} --discovery-token-ca-cert-hash sha256:{{ hostvars['K8S_TOKEN_HOLDER']['hash'] }} --control-plane --certificate-key {{ hostvars['K8S_TOKEN_HOLDER']['key'] }} --v=5 2>&1 | tee /tmp/kubeadm_init.log

@@ -12,4 +12,4 @@
 
   - name: "Kubeadmn join Worker"
     shell: >
-      kubeadm join --token={{ hostvars['K8S_TOKEN_HOLDER']['token'] }} --discovery-token-ca-cert-hash sha256:{{ hostvars['K8S_TOKEN_HOLDER']['hash'] }} {{api_dns}}:6443 2>&1 | tee /tmp/kubeadm_init.log
+      kubeadm join --token={{ hostvars['K8S_TOKEN_HOLDER']['token'] }} --discovery-token-ca-cert-hash sha256:{{ hostvars['K8S_TOKEN_HOLDER']['hash'] }} {{api_dns}}:6443 --v=5 2>&1 | tee /tmp/kubeadm_init.log
