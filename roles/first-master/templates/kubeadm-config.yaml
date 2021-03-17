@@ -28,7 +28,7 @@ authorization:
   mode: RBAC
 dns:
   type: CoreDNS
-{% if groups["k8s-masters"] | length > 1 %}
+{% if groups["k8s_masters"] | length > 1 %}
   certSANs:
 {% if virtual_ip is defined %}
   - {{virtual_ip}}
@@ -41,7 +41,7 @@ dns:
 etcd:
   endpoints:
   - https://localhost:{{etcd_proxy_port}}
-{% for master in groups["k8s-masters"] %}
+{% for master in groups["k8s_masters"] %}
   - https://{{hostvars[master]['ansible_host']}}:2379
 {% endfor %}
   local:
