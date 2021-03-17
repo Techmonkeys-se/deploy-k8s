@@ -12,7 +12,7 @@
       dest: /tmp/kubeadm-config.yaml
 
   - name: Initializing Kubernetes cluster
-    shell: kubeadm init --config=/tmp/kubeadm-config.yaml --upload-certs 2>&1 | tee /tmp/kubeadm_init.log
+    shell: kubeadm init --config=/tmp/kubeadm-config.yaml --upload-certs --v=5 2>&1 | tee /tmp/kubeadm_init.log
     register: output
   
   - name: Copying required files
