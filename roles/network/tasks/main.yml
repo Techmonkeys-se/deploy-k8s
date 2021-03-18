@@ -10,5 +10,5 @@
   - name: Install ingress controller
     command: kubectl apply -f {{ingress_controller_yaml}}
 
-  - name: Due to bug restart coredns after calico install
-    shell: kubectl rollout restart deployment/coredns -n kube-system
+#  - name: Due to bug restart coredns after calico install
+#    shell: kubectl rollout restart deployment/coredns -n kube-system
