@@ -8,6 +8,7 @@
     - prerequisites
     - setup-nodes
     - first-master
+    - network
 
 - hosts: k8s_master_nodes
   vars_files:
