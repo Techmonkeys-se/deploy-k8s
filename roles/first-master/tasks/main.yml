@@ -21,9 +21,6 @@
      cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
      chown $(id -u):$(id -g) $HOME/.kube/config
 
-  - name: Install Network Add-on
-    command: kubectl apply -f {{k8s_network_yaml}}
-
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
     file:
@@ -41,6 +38,9 @@
     delegate_to: localhost
     shell: echo "source <(kubectl completion bash)" >> ~/.bashrc
     become: no
+
+  - name: Install Network Add-on
+    command: kubectl apply -f {{k8s_network_yaml}}
 
   - name: "Cluster token"
     shell: kubeadm token list | grep bootstrappers | cut -d ' ' -f1
