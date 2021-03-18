@@ -66,6 +66,9 @@ https://github.com/kubernetes/kubernetes/issues/99305
 
 - Calico network plugin is not plug and play. You have been warned (or im too stupid to learn BGP)
 
+- Storage role with Longhorn has some issues and need manual work
+  - the yaml file need to be applied several times for all settings to be implemented
+
 ## Contribution
 ------------------
 
