@@ -33,7 +33,7 @@
 
   - name: Fetch kubeconfig
     fetch:
-      src: $HOME/.kube/config
+      src: /root/.kube/config
       dest: $HOME/.kube/config
     become: no
 
