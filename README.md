@@ -59,8 +59,12 @@ This collection is a work in progress i use to learn ansible and kubernetes.
 ## Good to know, Known issues
 ----------------
 
-Sometimes kubelet fails to start after join, more information:
+- Sometimes kubelet fails to start after join, more information:
 https://github.com/kubernetes/kubernetes/issues/99305
+
+- If you ever change networking plugin you need to clean up /etc/cni/net.d/ folder from old cni configs.
+
+- Calico network plugin is not plug and play. You have been warned (or im too stupid to learn BGP)
 
 ## Contribution
 ------------------
