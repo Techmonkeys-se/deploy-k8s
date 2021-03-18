@@ -37,10 +37,11 @@ master_ports:
 - "2379-2380/tcp"
 - "10250-10252/tcp"
 # Uncomment if flannel is the network plugin to be used
+# 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
-#- "8472/udp"
+- "8472/udp"
 # Uncomment if calico is to be used
-- "179/tcp"
+#- "179/tcp"
 
 # If node is both master & worker
 # Role/playbook not implemented yet
@@ -50,10 +51,11 @@ master_worker_ports:
 - "10250-10252/tcp"
 - "30000-32767/tcp"
 # Uncomment if flannel is the network plugin to be used
+# 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
-#- "8472/udp"
+- "8472/udp"
 # Uncomment if calico is to be used
-- "179/tcp"
+#- "179/tcp"
 
 worker_ports:
 - "10250/tcp"
@@ -61,14 +63,15 @@ worker_ports:
 # Uncomment if calico is to be used
 - "179/tcp"
 # Uncomment if flannel is the network plugin to be used
+# 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
-#- "8472/udp"
+- "8472/udp"
 
 # URL to network deployment yaml
 # Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
 # 1. https://docs.projectcalico.org/manifests/calico.yaml
 # 2. https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-k8s_network_yaml: https://docs.projectcalico.org/manifests/calico.yaml
+k8s_network_yaml: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
 # URL to network deployment yaml
 # Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
