@@ -1,0 +1,38 @@
+---
+  - name: Install open-iscsi on Storage nodes
+    yum:
+      name: 
+        - iscsi-initiator-utils
+        - nfs-utils
+      state: present
+    become: yes
+
+  - name: Starting and Enabling the required services
+    service:
+     name: iscsid
+     state: started
+     enabled: yes
+
+  - name: Add storage-node label
+    delegate_to: localhost
+    shell: kubectl label nodes {{ inventory_hostname }} node.longhorn.io/create-default-disk=true
+    ignore_errors: True
+#    when: inventory_hostname == groups.k8s_storage_nodes
+
+  - name: Add create default disk annotation to node
+    delegate_to: localhost
+    shell: kubectl annotate nodes {{ inventory_hostname }} node.longhorn.io/default-disks-config='[ { "name":"sasdisk", "path":"/var/lib/longhorn/storage/", "allowScheduling":true, "storageReserved":10485760, "tags":[ "storage", "sasdisk" ] }]'
+    ignore_errors: True
+#    when: inventory_hostname == groups.k8s_storage_nodes
+
+  - name: Create longhorn yaml from template
+    delegate_to: localhost
+    template:
+      src: longhorn.yaml
+      dest: /tmp/longhorn.yaml
+    run_once: true
+
+  - name: Kubectl apply -f longhorn.yaml
+    delegate_to: localhost
+    shell: kubectl apply -f /tmp/longhorn.yaml
+    run_once: true
