@@ -61,7 +61,7 @@ worker_ports:
 - "10250/tcp"
 - "30000-32767/tcp"
 # Uncomment if calico is to be used
-- "179/tcp"
+#- "179/tcp"
 # Uncomment if flannel is the network plugin to be used
 # 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
