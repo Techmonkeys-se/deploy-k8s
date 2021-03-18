@@ -1,6 +1,5 @@
 ---
   - name: Put SELinux in permissive mode, logging actions that would be blocked.
-    become: yes
     selinux:
       policy: targeted
       state: permissive
