@@ -26,16 +26,9 @@
     ignore_errors: True
 #    when: inventory_hostname == groups.k8s_storage_nodes
 
-  - name: create template to worker node before fetching
-    template:
-      src: longhorn.yaml
-      dest: /tmp/longhorn.yaml
-      mode: 0777
-
   - name: Fetch longhorn yaml to localhost
-    delegate_to: localhost
     fetch:
-      src: /tmp/longhorn.yaml
+      src: longhorn.yaml
       dest: /tmp/longhorn.yaml
     run_once: true
 

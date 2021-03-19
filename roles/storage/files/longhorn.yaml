@@ -457,36 +457,36 @@ metadata:
   namespace: longhorn-system
 data:
   default-setting.yaml: |-
-    backup-target: {{backup_target}}
-    backup-target-credential-secret: {{backup_target_credential_secret}}
-    allow-recurring-job-while-volume-detached: {{allow_recurring_job_while_volume_detached}}
-    create-default-disk-labeled-nodes: {{create_default_disk_labeled_nodes}}
-    default-data-path: {{default_data_path}}
-    replica-soft-anti-affinity: {{replica_soft_anti_affinity}}
-    storage-over-provisioning-percentage: {{storage_over_provisioning_percentage}}
-    storage-minimal-available-percentage: {{storage_minimal_available_percentage}}
-    upgrade-checker: {{upgrade_checker}}
-    default-replica-count: {{default_replica_count}}
-    default-data-locality: {{default_data_locality}}
-    guaranteed-engine-cpu: {{guaranteed_engine_cpu}}
-    default-longhorn-static-storage-class: {{default_longhorn_static_storage_class}}
-    backupstore-poll-interval: {{backupstore_poll_interval}}
-    taint-toleration: {{taint_toleration}}
-    priority-class: {{priority_class}}
-    auto-salvage: {{auto_salvage}}
-    auto-delete-pod-when-volume-detached-unexpectedly: {{auto_delete_pod_when_volume_detached_unexpectedly}}
-    disable-scheduling-on-cordoned-node: {{disable_scheduling_on_cordoned_node}}
-    replica-zone-soft-anti-affinity: {{replica_zone_soft_anti_affinity}}
-    volume-attachment-recovery-policy: {{volume_attachment_recovery_policy}}
-    node-down-pod-deletion-policy: {{node_down_pod_deletion_policy}}
-    allow-node-drain-with-last-healthy-replica: {{allow_node_drain_with_last_healthy_replica}}
-    mkfs-ext4-parameters: {{mkfs_ext4_parameters}}
-    disable-replica-rebuild: {{disable_replica_rebuild}}
-    replica-replenishment-wait-interval: {{replica_replenishment_wait_interval}}
-    disable-revision-counter: {{disable_revision_counter}}
-    system-managed-pods-image-pull-policy: {{system_managed_pods_image_pull_policy}}
-    allow-volume-creation-with-degraded-availability: {{allow_volume_creation_with_degraded_availability}}
-    auto-cleanup-system-generated-snapshot: {{auto_cleanup_system_generated_snapshot}}
+    backup_target:
+    backup_target_credential_secret: 
+    allow_recurring_job_while_volume_detached:
+    create_default_disk_labeled_nodes: true
+    default_data_path: /var/lib/longhorn/storage/
+    replica_soft_anti_affinity: false
+    storage_over_provisioning_percentage: 200
+    storage_minimal_available_percentage: 5
+    upgrade_checker: true
+    default_replica_count: 3
+    default_data_locality: disabled
+    guaranteed_engine_cpu: 0.25
+    default_longhorn_static_storage_class: longhorn-static
+    backupstore_poll_interval: 300
+    taint_toleration:
+    priority_class:
+    auto_salvage: true
+    auto_delete_pod_when_volume_detached_unexpectedly: true
+    disable_scheduling_on_cordoned_node: true
+    replica_zone_soft_anti_affinity: true
+    volume_attachment_recovery_policy: wait
+    node_down_pod_deletion_policy: do-nothing
+    allow_node_drain_with_last_healthy_replica: false
+    mkfs_ext4_parameters:
+    disable_replica_rebuild: false
+    replica_replenishment_wait_interval: 600
+    disable_revision_counter: false
+    system_managed_pods_image_pull_policy: if-not-present
+    allow_volume_creation_with_degraded_availability: true
+    auto_cleanup_system_generated_snapshot: true
 ---
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
