@@ -29,7 +29,7 @@
   - name: Create longhorn yaml from template
     delegate_to: localhost
     fetch:
-      src: "{{ lookup('template', 'longhorn.yaml') }}""
+      src: "{{ lookup('template', 'longhorn.yaml') }}"
       dest: /tmp/longhorn.yaml
     run_once: true
 
