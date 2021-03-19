@@ -12,6 +12,7 @@
      name: iscsid
      state: started
      enabled: yes
+    become: yes
 
   - name: Add storage-node label
     delegate_to: localhost
