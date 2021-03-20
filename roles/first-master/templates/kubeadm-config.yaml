@@ -29,7 +29,7 @@ authorization:
 dns:
   type: CoreDNS
 {% if groups["k8s_masters"] | length > 1 %}
-  certSANs:
+certSANs:
   - {{ api_dns }}
 {% if virtual_ip is defined %}
   - {{virtual_ip}}
