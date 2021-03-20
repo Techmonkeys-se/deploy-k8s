@@ -49,7 +49,7 @@ etcd:
     dataDir: /var/lib/etcd
 imageRepository: k8s.gcr.io
 kind: ClusterConfiguration
-kubernetesVersion: v1.20.0
+kubernetesVersion: v1.20.5
 controlPlaneEndpoint: {{ api_dns }}
 networking:
   dnsDomain: cluster.local
