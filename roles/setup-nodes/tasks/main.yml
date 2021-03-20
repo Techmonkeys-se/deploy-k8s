@@ -108,8 +108,8 @@
       name: firewalld
       state: reloaded
 
-  - name: Stop & disable NetworkManager service
-    systemd:
-      name: NetworkManager
-      state: stopped
-      enabled: no
+#  - name: Stop & disable NetworkManager service
+#    systemd:
+#      name: NetworkManager
+#      state: stopped
+#      enabled: no
