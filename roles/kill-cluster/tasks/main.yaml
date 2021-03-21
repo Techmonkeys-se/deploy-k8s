@@ -1,0 +1,20 @@
+---
+
+- name: Doing kubeadm reset on all nodes
+  command: kubeadm reset -f --cert-dir /etc/kubernetes/pki
+    
+- name: Clearing out old cni configurations (/var/cni/net.d)
+  file:
+    state: absent
+    path: /etc/cni/net.d
+
+- name: Clearing out old etcd data (/var/lib/etcd/)
+  file: 
+    state: absent
+    path: /var/lib/etcd
+
+- name: Clearing out old certificates (/etc/kubernetes/pki)
+  file:
+    state: absent
+    path: /etc/kubernetes/pki
+  
