@@ -21,9 +21,6 @@
      cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
      chown $(id -u):$(id -g) $HOME/.kube/config
 
-  - name: Install Network Add-on
-    command: kubectl apply -f {{k8s_network_yaml}}
-
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
     file:
@@ -76,14 +73,3 @@
   - name: Storing Logs and Generated token for future purpose.
     local_action: copy content={{ output.stdout }} dest={{ kubeadm_init_log }}
     become: False
-
-  - name: Copy ingress controller yaml to node (remove when gitted)
-    copy:
-      src: haproxy_ingress.yaml
-      dest: /tmp/haproxy_ingress.yaml
-
-  - name: Install ingress controller
-    command: kubectl apply -f {{ingress_controller_yaml}}
-
-  - name: Due to bug restart coredns after calico install
-    shell: kubectl rollout restart deployment/coredns -n kube-system

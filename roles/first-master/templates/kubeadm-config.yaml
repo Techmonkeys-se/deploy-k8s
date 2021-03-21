@@ -29,12 +29,13 @@ authorization:
 dns:
   type: CoreDNS
 {% if groups["k8s_masters"] | length > 1 %}
-  certSANs:
+certSANs:
+  - {{ api_dns }}
 {% if virtual_ip is defined %}
   - {{virtual_ip}}
 {% endif %}
 {% for master in groups["k8s_masters"] %}
-  - {{hostvars[master]['ansible_host']}}
+  - {{hostvars[master]['inventory_hostname']}}
 {% endfor %}
 {% endif %}
   - localhost
@@ -42,13 +43,13 @@ etcd:
   endpoints:
   - https://localhost:{{etcd_proxy_port}}
 {% for master in groups["k8s_masters"] %}
-  - https://{{hostvars[master]['ansible_host']}}:2379
+  - https://{{hostvars[master]['inventory_hostname']}}:2379
 {% endfor %}
   local:
     dataDir: /var/lib/etcd
 imageRepository: k8s.gcr.io
 kind: ClusterConfiguration
-kubernetesVersion: v1.20.0
+kubernetesVersion: v1.20.5
 controlPlaneEndpoint: {{ api_dns }}
 networking:
   dnsDomain: cluster.local

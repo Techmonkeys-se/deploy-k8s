@@ -1,0 +1,7 @@
+---
+- hosts: k8s_storage_nodes
+  vars_files:
+    - group_vars/storage.yml
+
+  roles: 
+    - storage
