@@ -21,4 +21,3 @@
 - name: Deleting cni interfaces
   command: ip link delete cni0 type bridge
   ignore_errors: True
-  when: inventory_hostname in groups.k8s_master_0 or inventory_hostname in groups.k8s_master_nodes
