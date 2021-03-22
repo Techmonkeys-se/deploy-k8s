@@ -2,13 +2,13 @@
   - name: Install Network Add-on
     command: kubectl apply -f {{k8s_network_yaml}}
 
-  - name: Copy ingress controller yaml to node (remove when gitted)
-    copy:
-      src: haproxy_ingress.yaml
-      dest: /tmp/haproxy_ingress.yaml
+#  - name: Copy ingress controller yaml to node (remove when gitted)
+#    copy:
+#      src: haproxy_ingress.yaml
+#      dest: /tmp/haproxy_ingress.yaml
 
-  - name: Install ingress controller
-    command: kubectl apply -f {{ingress_controller_yaml}}
+#  - name: Install ingress controller
+#    command: kubectl apply -f {{ingress_controller_yaml}}
 
 #  - name: Due to bug restart coredns after calico install
 #    shell: kubectl rollout restart deployment/coredns -n kube-system
