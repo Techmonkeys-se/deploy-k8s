@@ -6,7 +6,8 @@ Collection of Ansible roles to setup servers and deploy a multi-master Kubernete
 - Deployment of masters & workers.
 - set up networking plug-in via yaml file provided url/location by user
 - Ecnrypt secrets at rest
-- Ingress deplyment.
+- Ingress deplyment. (haproxy)
+- Add new master/worker nodes
 
 ## Requirements
 ------------
