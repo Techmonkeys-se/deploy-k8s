@@ -114,6 +114,11 @@
       insertafter: '#plugins=ifcfg-rh'
       line: "dns=none"
 
+  - name: Restart NetworkManager
+    systemd:
+      name: NetworkManager
+      state: restarted
+
 #  - name: Stop & disable NetworkManager service
 #    systemd:
 #      name: NetworkManager
