@@ -114,6 +114,12 @@
       insertafter: '#plugins=ifcfg-rh'
       line: "dns=none"
 
+  - name: Comment out searchdomains
+    replace:
+      path: /etc/resolv.conf
+      regexp: 'search k8s.threshold.se'
+      replace: '#search k8s.threshold.se'
+
   - name: Restart NetworkManager
     systemd:
       name: NetworkManager
