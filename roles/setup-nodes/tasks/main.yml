@@ -108,6 +108,12 @@
       name: firewalld
       state: reloaded
 
+  - name: Fix NetworkManager DNS resolution inside cluster
+    lineinfile:
+      path: /etc/NetworkManager/NetworkManager.conf
+      insertafter: '#plugins=ifcfg-rh'
+      line: "dns=none"
+
 #  - name: Stop & disable NetworkManager service
 #    systemd:
 #      name: NetworkManager
