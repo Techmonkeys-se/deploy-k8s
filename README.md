@@ -40,6 +40,14 @@ or
 
 Will init the first master and the rest of the servers you have configured in hosts file.
 
+## Adding a node
+- Add the node to inventory/k8shosts correct group
+- run 
+    `ansible-playbook -i inventory/k8shosts add-node.yml --limit "node-fqdn"`
+
+You can always run: 
+`ansible-playbook -i inventory/k8shosts add-node.yml --limit "node-fqdn -C` to do a dry-runbefore deploying so you see the correct hosts are being provisioned
+
 ## Work in progress
 ----------------
 
