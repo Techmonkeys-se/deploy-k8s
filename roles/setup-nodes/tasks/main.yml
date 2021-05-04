@@ -117,8 +117,8 @@
   - name: Comment out searchdomains
     replace:
       path: /etc/resolv.conf
-      regexp: 'search k8s.threshold.se'
-      replace: '#search k8s.threshold.se'
+      regexp: '^( +search$)'
+      replace: '#\1'
 
   - name: Restart NetworkManager
     systemd:
