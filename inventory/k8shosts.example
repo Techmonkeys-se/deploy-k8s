@@ -9,6 +9,8 @@ k8s-master2.domain.com ansible_host=192.168.0.35
 k8s-worker0.domain.com ansible_host=192.168.0.36
 #k8s-worker1.domain.com ansible_host=192.168.0.37
 
+# All Worker nodes act as Storage nodes also, if not wanted please remove :children from tag and
+# specify all nodes that should be storage nodes also.
 [k8s_storage_nodes:children]
 k8s_master_nodes
 k8s_master_0
