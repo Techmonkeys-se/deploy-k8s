@@ -1,0 +1,4 @@
+---
+  - name: "Kubeadmn join Master"
+    shell: >
+      kubeadm join {{ add_worker_token }} --control-plane --certificate-key {{ add_master_token }} --v=5 2>&1 | tee /tmp/kubeadm_init.log

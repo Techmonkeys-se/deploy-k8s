@@ -42,6 +42,11 @@ master_ports:
 - "8472/udp"
 # Uncomment if calico is to be used
 #- "179/tcp"
+# Prometheus workaround
+- "9100/tcp"
+- "10249/tcp"
+- "10257/tcp"
+- "10259/tcp"
 
 # If node is both master & worker
 # Role/playbook not implemented yet
@@ -66,6 +71,8 @@ worker_ports:
 # 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
 - "8472/udp"
+# For prometheus metrics
+- "9100/tcp"
 
 # URL to network deployment yaml
 # Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
@@ -83,6 +90,20 @@ ingress_controller_yaml: https://raw.githubusercontent.com/haproxytech/kubernete
 # Do not change token_file (generated automatically)
 token_file: join_token
 kubeadm_init_log: kubeadm_init.log
+
+# Below here is confugration needed if you are going to join new nodes.
+# These Commands need to be run on a node with "kubeadm" installed
+# Remember these tokens will expire so when adding nodes make sure all tokens are still valid
+
+# Command to run to get join command for workers:
+# kubeadm token create --print-join-command
+# remove "kubeadm join" add rest here
+add_worker_token: 
+
+# To get token for joining masters run on master
+# kubeadm init phase upload-certs --upload-certs
+#
+add_master_token: 111154dbbf7f4e7e00401111437937946da5880bcebc2612eb81046b0d1111
 
 
 # Smoke-test
