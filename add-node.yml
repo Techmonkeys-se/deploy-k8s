@@ -18,4 +18,4 @@
   roles:
     - prerequisites
     - setup-nodes
-    - add-workers
+    - add-worker
