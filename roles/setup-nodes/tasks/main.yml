@@ -115,7 +115,7 @@
       line: "dns=none"
 
   - name: Comment out searchdomains
-    replace:
+    ansible.builtin.lineinfile:
       ignore_errors: True
       path: /etc/resolv.conf
       regexp: '^search'
