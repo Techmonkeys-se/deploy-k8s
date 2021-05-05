@@ -116,7 +116,6 @@
 
   - name: Comment out searchdomains
     lineinfile:
-      ignore_errors: True
       dest: /etc/resolv.conf
       backup: True
       backrefs: True
