@@ -116,6 +116,7 @@
 
   - name: Comment out searchdomains
     replace:
+      ignore_errors: True
       path: /etc/resolv.conf
       regexp: '^search'
       replace: '#\1'
