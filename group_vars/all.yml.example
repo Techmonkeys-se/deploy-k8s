@@ -74,6 +74,10 @@ worker_ports:
 # For prometheus metrics
 - "9100/tcp"
 - "10249/tcp"
+# haproxy
+- "80/tcp"
+- "443/tcp"
+- "1024/tcp"
 
 # URL to network deployment yaml
 # Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
