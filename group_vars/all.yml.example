@@ -73,6 +73,7 @@ worker_ports:
 - "8472/udp"
 # For prometheus metrics
 - "9100/tcp"
+- "10249/tcp"
 
 # URL to network deployment yaml
 # Choose what networking you are going to use (comment/uncommet/add firewalld rules needed)
