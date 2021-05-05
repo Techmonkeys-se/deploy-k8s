@@ -119,7 +119,7 @@
       ignore_errors: True
       path: /etc/resolv.conf
       regexp: '^search'
-      replace: '#\1'
+      line: '#\1'
 
   - name: Restart NetworkManager
     systemd:
