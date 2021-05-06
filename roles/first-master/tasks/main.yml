@@ -31,7 +31,7 @@
   - name: Fetch kubeconfig
     fetch:
       src: /root/.kube/config
-      dest: $HOME/.kube/config
+      dest: "{{ lookup('env','HOME') }}/.kube/config"
     become: no
 
   - name: kubectl autocomplete
