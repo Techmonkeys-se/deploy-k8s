@@ -25,7 +25,7 @@
     delegate_to: localhost
     set_fact: local_home="{{ lookup('env','HOME') }}"
     file:
-      path: {{local_home}}/.kube/
+      path: "{{local_home}}"/.kube/
       state: directory
     become: no
 
