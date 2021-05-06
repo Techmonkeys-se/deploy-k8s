@@ -24,7 +24,7 @@
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
     file:
-      path: {{ lookup('env','HOME') }}/.kube/
+      path: '{{ lookup('env','HOME') }}'/.kube/
       state: directory
     become: no
 
