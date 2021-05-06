@@ -17,7 +17,7 @@ The goal is to have a deployment script that deploys a fully functional producti
 ------------
 - A deploy server with RHEL 8+ with ansible installed
 - User with ssh-keys and ssh-key access to all nodes as root user. 
-- All nodes need atleast 2cpu 4gig ram (bare minimun)
+- All nodes need atleast 2cpu 4gig ram (bare minimum)
 
 These playbooks are only tested and written to be run as root directly towards the remote server.
 
