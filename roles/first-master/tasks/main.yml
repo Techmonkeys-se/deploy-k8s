@@ -4,7 +4,6 @@
 
   - name: Resetting kubeadm
     shell: kubeadm reset -f
-#    register: output
 
   - name: Copy config to master0
     template:
@@ -41,7 +40,6 @@
       dest: "{{ lookup('env','HOME') }}/.kube/config"
       state: file
       flat: yes
-    #become: no
 
   - name: kubectl autocomplete
     delegate_to: localhost
