@@ -21,9 +21,10 @@
      cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
      chown $(id -u):$(id -g) {{ansible_env.HOME}}/.kube/config
 
+  - set_fact: local_home="{{ lookup('env','HOME') }}"
+
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
-    set_fact: local_home="{{ lookup('env','HOME') }}"
     file:
       path: "{{local_home}}"/.kube/
       state: directory
