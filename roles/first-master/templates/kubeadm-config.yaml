@@ -9,7 +9,7 @@ bootstrapTokens:
   - authentication
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: {{ hostvars.ansible_host }}
+  advertiseAddress: {{ hostvars[inventory_hostname]['ansible_host'] }}
   bindPort: 6443
 nodeRegistration:
   criSocket: /var/run/containerd/containerd.sock
