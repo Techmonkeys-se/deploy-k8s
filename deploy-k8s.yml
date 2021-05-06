@@ -1,11 +1,17 @@
 ---
-- hosts: k8s_master_0
+- hosts: all
   vars_files:
     - group_vars/all.yml
 
   roles:
     - prerequisites
     - setup-nodes
+
+- hosts: k8s_master_0
+  vars_files:
+    - group_vars/all.yml
+
+  roles:
     - first-master
     - network
 
@@ -14,8 +20,6 @@
     - group_vars/all.yml
 
   roles:
-    - prerequisites
-    - setup-nodes
     - masters
 
 - hosts: k8s_worker_nodes
@@ -23,8 +27,6 @@
     - group_vars/all.yml
 
   roles:
-    - prerequisites
-    - setup-nodes
     - workers
 
 - hosts: k8s_etcd
