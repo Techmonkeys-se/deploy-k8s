@@ -32,7 +32,7 @@
     fetch:
       src: /root/.kube/config
       dest: "{{ lookup('env','HOME') }}/.kube/config"
-    become: no
+    #become: no
 
   - name: kubectl autocomplete
     delegate_to: localhost
