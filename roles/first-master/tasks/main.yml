@@ -17,14 +17,14 @@
   
   - name: Copying required files
     shell: |
-     mkdir -p $HOME/.kube
+     mkdir -p {{ansible_env.HOME}}/.kube
      cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
-     chown $(id -u):$(id -g) $HOME/.kube/config
+     chown $(id -u):$(id -g) {{ansible_env.HOME}}/.kube/config
 
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
     file:
-      path: $HOME/.kube/
+      path: {{ lookup('env','HOME') }}/.kube/
       state: directory
     become: no
 
