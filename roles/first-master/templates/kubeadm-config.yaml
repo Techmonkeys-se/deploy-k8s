@@ -1,4 +1,3 @@
-#jinja2: lstrip_blocks: “True”
 apiVersion: kubeadm.k8s.io/v1beta2
 bootstrapTokens:
 - groups:
