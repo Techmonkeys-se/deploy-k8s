@@ -52,7 +52,7 @@ This playbook will installed all dependencies and requirerments. Then init the c
   
   replace `<FQDN>` with full hostname
 
-You can always run thge playbook with `-C` for a dry-run to see changes that will happen
+You can always run the playbook with `-C` for a dry-run to see changes that will happen
 ## Work in progress
 ----------------
 This collection is a work in progress i use to learn ansible and kubernetes. Script has been tested on 3 master/3 worker setup and 1master/1worker.
@@ -79,6 +79,6 @@ https://github.com/kubernetes/kubernetes/issues/99305
 
 ## Contribution
 ------------------
-Feel free to create issues here on github and ill go thru all when i can or help out to add features.
+Feel free to create issues here on github and i´ll go thru all when i can or help out to add features.
 
 Special thanks to [Schabo](https://github.com/Schabo) for the massive help in ideas and troubleshooting.
