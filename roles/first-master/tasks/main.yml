@@ -33,6 +33,7 @@
       src: /root/.kube/config
       dest: "{{ lookup('env','HOME') }}/.kube/config"
       state: file
+      flat: yes
     #become: no
 
   - name: kubectl autocomplete
