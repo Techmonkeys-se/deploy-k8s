@@ -1,20 +1,32 @@
 # vars file for k8s 
-#master0_addr: 192.168.0.33 #Should not be needed anymore
+
 # api_dns: dns name in your LB/router that points to all nodes running API
 api_dns: k8s.domain.com
+
+# Podnetwork to use, do not use a network you already have in use outside of cluster
 cidr_v: 10.244.0.0/16
-# Virtual IP used with keepalived, not implemented but can be already added to kube config
+
+# Virtual IP added to certSANs if used.
 #virtual_ip: 
+
+# Name of your cluster
 clustername: kubernetes
-# Move encoded secret in vault?
+
+# Secrets encoding.
 # To get encoded secret run on linux terminal:
 # head -c 32 /dev/urandom | base64
 encoded_secret: MyIBGF/Q0asiQimH7bmSgNhLmErKT9hps103lyLLREE=
-# haproxy port for etcd
+
+# etcd proxy port 
 etcd_proxy_port: 2379
+
+# Change this to own liking, only used when bootstraping cluster (TTL 24 hours)
 bootstrap_token: abcdef.0123456789abcdef
+
+# Choose version you want to install of kubernetes
 k8s_version: v1.21.0
 
+# Packages that will be installed on all nodes.
 packages:
 - kubeadm
 - kubectl
@@ -26,48 +38,31 @@ packages:
 - lvm2
 - containerd.io
 
+# Services to start
 services:
 - kubelet
 - firewalld
 
 # Based on https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#check-required-ports
 # https://coreos.com/flannel/docs/latest/troubleshooting.html (Firewalls section)
-# https://docs.projectcalico.org/getting-started/kubernetes/requirements (Network requirments)
 master_ports:
-- "6443/tcp"
+# Cluster core ports
 - "2379-2380/tcp"
+- "6443/tcp"
 - "10250-10252/tcp"
 # Uncomment if flannel is the network plugin to be used
 # 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
 - "8472/udp"
-# Uncomment if calico is to be used
-#- "179/tcp"
-# Prometheus workaround
+# Prometheus ports, comment if not to be used
 - "9100/tcp"
 - "10249/tcp"
 - "10257/tcp"
 - "10259/tcp"
 
-# If node is both master & worker
-# Role/playbook not implemented yet
-master_worker_ports:
-- "6443/tcp"
-- "2379-2380/tcp"
-- "10250-10252/tcp"
-- "30000-32767/tcp"
-# Uncomment if flannel is the network plugin to be used
-# 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
-#- "8285/udp"
-- "8472/udp"
-# Uncomment if calico is to be used
-#- "179/tcp"
-
 worker_ports:
 - "10250/tcp"
 - "30000-32767/tcp"
-# Uncomment if calico is to be used
-#- "179/tcp"
 # Uncomment if flannel is the network plugin to be used
 # 8285/udp is UDP backend and 8472/udp vxlan. Only open one of these choose wisely before entering the rabbit hole.
 #- "8285/udp"
@@ -75,7 +70,7 @@ worker_ports:
 # For prometheus metrics
 - "9100/tcp"
 - "10249/tcp"
-# haproxy
+# ingress ports, in this case haproxy with stats
 - "80/tcp"
 - "443/tcp"
 - "1024/tcp"
@@ -91,13 +86,13 @@ k8s_network_yaml: https://raw.githubusercontent.com/coreos/flannel/master/Docume
 # 1. https://url.to.your.yaml.com/ingress.yaml
 # 2. /local/directory/network-deployment.yaml
 # 3. use the one provided i have copied from https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/master/deploy/haproxy-ingress.yaml
-ingress_controller_yaml: https://raw.githubusercontent.com/haproxytech/kubernetes-ingress/master/deploy/haproxy-ingress.yaml
+#ingress_controller_yaml: 
 
 # Do not change token_file (generated automatically)
 token_file: join_token
 kubeadm_init_log: kubeadm_init.log
 
-# Below here is confugration needed if you are going to join new nodes.
+# Below here is configuration needed if you are going to join new nodes.
 # These Commands need to be run on a node with "kubeadm" installed
 # Remember these tokens will expire so when adding nodes make sure all tokens are still valid
 
@@ -110,7 +105,3 @@ add_worker_token:
 # kubeadm init phase upload-certs --upload-certs
 #
 add_master_token: 111154dbbf7f4e7e00401111437937946da5880bcebc2612eb81046b0d1111
-
-
-# Smoke-test
-smoke_test_node_port: 31231
