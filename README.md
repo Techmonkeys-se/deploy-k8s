@@ -61,7 +61,7 @@ This collection is a work in progress i use to learn ansible and kubernetes.
 - add RBAC config?
 - add flux, add backup
 - add storage (Longhorn?)
-- security (stackrox?)
+- security (for example stackrox?)
 - monitoring (prometheus, grafana, telegraf?)
 - tag tasks in roles?
 
