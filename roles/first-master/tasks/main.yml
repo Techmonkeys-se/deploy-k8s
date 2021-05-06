@@ -15,11 +15,18 @@
     shell: kubeadm init --config=/tmp/kubeadm-config.yaml --upload-certs --v=5 2>&1 | tee /tmp/kubeadm_init.log
     register: output
   
-  - name: Copying required files
-    shell: |
-     mkdir -p {{ansible_env.HOME}}/.kube
-     cp -f /etc/kubernetes/admin.conf $HOME/.kube/config
-     chown $(id -u):$(id -g) {{ansible_env.HOME}}/.kube/config
+  - name: create .kube directory
+    file:
+      path: ~/.kube
+      state: directory
+
+  - name: Copy kube config to .kube
+    copy:
+      src: /etc/kubernetes/admin.conf
+      dest: ~/.kube/config
+      remote_src: yes
+      owner: root
+      group: root
 
   - name: Create kubeconfig folder on localhost homefolder
     delegate_to: localhost
