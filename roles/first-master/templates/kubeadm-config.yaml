@@ -1,4 +1,3 @@
-#jinja2: lstrip_blocks: True
 apiVersion: kubeadm.k8s.io/v1beta2
 bootstrapTokens:
 - groups:
@@ -10,7 +9,7 @@ bootstrapTokens:
   - authentication
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: {% for host in groups['k8s_master_0'] %}{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }}\n {% endfor %}
+  advertiseAddress: {{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}
   bindPort: 6443
 nodeRegistration:
   criSocket: /var/run/containerd/containerd.sock
