@@ -120,14 +120,9 @@
       backrefs: True
       regexp: '^(\s*[^#]*)search(.*)$'
       line: '#\1search\2'
+    ignore_errors: True
 
   - name: Restart NetworkManager
     systemd:
       name: NetworkManager
       state: restarted
-
-#  - name: Stop & disable NetworkManager service
-#    systemd:
-#      name: NetworkManager
-#      state: stopped
-#      enabled: no
