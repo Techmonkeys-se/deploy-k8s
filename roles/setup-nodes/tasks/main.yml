@@ -117,10 +117,9 @@
   - name: Comment out searchdomains
     lineinfile:
       dest: /etc/resolv.conf
-      backup: True
       backrefs: True
-      regexp: '^search'
-      line: '#\1'
+      regexp: '^(\s*[^#]*)search(.*)$'
+      line: '#\1search\2'
 
   - name: Restart NetworkManager
     systemd:
