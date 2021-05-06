@@ -1,5 +1,5 @@
-# vars file for k8s
-master0_addr: 192.168.0.33
+# vars file for k8s 
+#master0_addr: 192.168.0.33 #Should not be needed anymore
 # api_dns: dns name in your LB/router that points to all nodes running API
 api_dns: k8s.domain.com
 cidr_v: 10.244.0.0/16
