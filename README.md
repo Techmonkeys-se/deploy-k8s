@@ -1,4 +1,4 @@
-# Ansible Roles to deploy multi-master Kubernetes on Redhat Linux 8
+# Ansible Roles to deploy Kubernetes on Redhat Linux 8
 
 Collection of Ansible roles to setup servers and deploy a multi-master Kubernetes. Using containerd.io
 
@@ -12,7 +12,7 @@ Collection of Ansible roles to setup servers and deploy a multi-master Kubernete
 ------------
 Before i started this project i tried a lot of different deployment script but of those that worked did not have fully functioning cluster without manual work after deployment. Looking at other projects i wanted some parts that i wanted. So i started learning from then and writing this repository.
 
-The goal is to have a deployment script that deploys a fully functional kubernetes cluster. A lot of it should be customizable to ones requirments.
+The goal is to have a deployment script that deploys a fully functional production ready kubernetes cluster. A lot of it should be customizable to ones requirments.
 ## Requirements
 ------------
 - A deploy server with RHEL 8+ with ansible installed
