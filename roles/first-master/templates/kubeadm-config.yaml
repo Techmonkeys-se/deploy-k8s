@@ -9,7 +9,7 @@ bootstrapTokens:
   - authentication
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: {{ hostvars[inventory_hostname]['ansible_env'].SSH_CONNECTION.split(' ')[2] }}
+  advertiseAddress: {{ ansible_default_ipv4.address }}
   bindPort: 6443
 nodeRegistration:
   criSocket: /var/run/containerd/containerd.sock
