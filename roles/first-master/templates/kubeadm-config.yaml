@@ -28,8 +28,8 @@ authorization:
   mode: RBAC
 dns:
   type: CoreDNS
-{% if groups["k8s_masters"] | length > 1 %}
 certSANs:
+{% if groups["k8s_masters"] | length > 1 %}
   - {{ api_dns }}
 {% if virtual_ip is defined %}
   - {{virtual_ip}}
