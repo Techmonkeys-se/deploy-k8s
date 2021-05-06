@@ -10,7 +10,7 @@ bootstrapTokens:
   - authentication
 kind: InitConfiguration
 localAPIEndpoint:
-  advertiseAddress: {% for host in groups['k8s_master_0'] %}{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }}{% endfor %}
+  advertiseAddress: {{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }}
   bindPort: 6443
 nodeRegistration:
   criSocket: /var/run/containerd/containerd.sock
