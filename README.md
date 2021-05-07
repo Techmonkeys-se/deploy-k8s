@@ -1,5 +1,7 @@
 # Ansible Roles to deploy Kubernetes on Redhat Linux 8
 
+<b>!! Running the playbook deploy-k8s.yml will reset cluster before initiation of a new !!</b>
+
 Collection of Ansible roles to setup servers and deploy a multi-master Kubernetes. Using containerd.io
 
 - Deployment of masters & workers.
@@ -8,8 +10,6 @@ Collection of Ansible roles to setup servers and deploy a multi-master Kubernete
 - Ingress deployment. (haproxy) This is optional, need to remove commented line
 - Add new master/worker nodes
 - Kill cluster (if in need of a reset)
-
-<b>Remember running the playbook deploy-k8s.yml will reset cluster before initiation of a new</b>
 ## Purpose of this project / History for starting this project
 ------------
 Before i started this project i tried a lot of different deployment script but of those that worked did not have fully functioning cluster without manual work after deployment. Looking at other projects i wanted some parts that i wanted. So i started learning from then and writing this repository.
