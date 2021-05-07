@@ -41,10 +41,11 @@
       state: file
       flat: yes
 
-  - name: kubectl autocomplete
+  - name: Add kubectl autocomplete to .bashrc
     delegate_to: localhost
-    shell: echo "source <(kubectl completion bash)" >> ~/.bashrc
-    become: no
+    lineinfile:
+      dest: ~/.bashrc
+      line: 'source <(kubectl completion bash)'
 
   - name: "Cluster token"
     shell: kubeadm token list | grep bootstrappers | cut -d ' ' -f1
