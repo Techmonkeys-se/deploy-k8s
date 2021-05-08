@@ -9,4 +9,4 @@ Here i try to mention bigger changes made to these Ansible roles.
 ## 2021-05-07
 ------------
 - Clean up of all tasks
-- All asnible task are ansible modules now
+- All tasks are ansible modules now
