@@ -2,9 +2,6 @@
   - name: Pulling images required for setting up a Kubernetes cluster
     shell: kubeadm config images pull
 
-  - name: Resetting kubeadm
-    shell: kubeadm reset -f
-
   - name: Copy config to master0
     template:
       src: kubeadm-config.yaml
