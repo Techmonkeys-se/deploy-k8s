@@ -1,7 +1,5 @@
 # Ansible Roles to deploy Kubernetes on Redhat Linux 8
 
-<b>!! Running the playbook deploy-k8s.yml will reset cluster before initiation of a new !!</b>
-
 Collection of Ansible roles to setup servers and deploy a multi-master Kubernetes. Using containerd.io
 
 - Deployment of masters & workers.
@@ -22,8 +20,6 @@ The goal is to have a deployment script that deploys a fully functional producti
 - All nodes need atleast 2cpu 4gig ram (bare minimum)
 
 These playbooks are only tested and written to be run as root directly towards the remote server.
-
-<b>Remember running the playbook deploy-k8s.yml will reset cluster before initiation of a new</b>
 ## Preparations
 --------------
 - Clone this repo to the machine which you are going to use as deploy host.
@@ -40,12 +36,8 @@ nano group_vars/all.yml
 ```
 
 - Update your internal dns to point to each server & and api_dns, dns name in your LB/router that points to all nodes running API
-
-<b>Remember running the playbook deploy-k8s.yml will reset cluster before initiation of a new</b>
 ## Install Kubernetes
 ------------
-
-<b>Remember running the playbook deploy-k8s.yml will reset cluster before initiation of a new</b>
 
 Remember, Running the deploy-k8s.yml playbook will destroy a cluster if previously installed on hosts in inventory
 
