@@ -1,7 +1,4 @@
 ---
-  - name: Reset Kubeadm
-    shell: kubeadm reset -f
-
   - name: Show K8S_TOKEN_HOLDER token
     debug:
       msg: "[Masters] K8S_TOKEN_HOLDER K8S token is {{ hostvars['K8S_TOKEN_HOLDER']['token'] }}"
