@@ -44,6 +44,7 @@ Remember, Running the deploy-k8s.yml playbook will destroy a cluster if previous
 `ansible-playbook -i inventory/k8shosts deploy-k8s.yml`
 
 This playbook will installed all dependencies and requirerments. Then init the cluster.
+After installation is done `kubectl get nodes` will fail for a while because its restarting kubelet as a last step
 ## Adding a node
 ------------
 - Add the node to inventory/k8shosts correct group
