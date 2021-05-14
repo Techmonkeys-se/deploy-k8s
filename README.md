@@ -1,3 +1,4 @@
+![Kubernetes with Ansible](https://github.com/Edd1e360/deploy-k8s/blob/main/ansible-kubernetes.jpg)
 # Ansible Roles to deploy Kubernetes on Redhat Linux 8
 
 Collection of Ansible roles to setup servers and deploy a multi-master Kubernetes. Using containerd.io
