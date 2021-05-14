@@ -61,11 +61,11 @@ This collection is a work in progress i use to learn ansible and kubernetes. Scr
 
 - ~~Clean up playbooks~~
 - Add RBAC config
-- Add flux
+- Add flux (create gitrepo with template files for cluster bootstrapping)
 - Add backup script
-- add storage (Longhorn?)
-- security (for example stackrox?)
-- monitoring (prometheus, grafana, telegraf?)
+- add storage (via flux...)
+- security (via flux)
+- monitoring (prometheus, grafana, telegraf?) (add this in flux git)
 - tag tasks in roles?
 
 ## Good to know, Known issues
