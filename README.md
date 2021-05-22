@@ -84,4 +84,4 @@ Feel free to create issues here on github and i´ll go thru all when i can or he
 
 Special thanks to [Schabo](https://github.com/Schabo) for the massive help in ideas and troubleshooting.
 
-2021-05-22 Transfered owenership to techmonkeys.se (Techmonkeys-se).
+2021-05-22 Transfered ownership to techmonkeys.se (Techmonkeys-se).
