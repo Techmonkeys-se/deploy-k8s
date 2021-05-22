@@ -83,3 +83,5 @@ https://github.com/kubernetes/kubernetes/issues/99305
 Feel free to create issues here on github and i´ll go thru all when i can or help out to add features.
 
 Special thanks to [Schabo](https://github.com/Schabo) for the massive help in ideas and troubleshooting.
+
+2021-05-22 Transfered owenership to techmonkeys.se (Techmonkeys-se).
