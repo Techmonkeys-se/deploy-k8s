@@ -76,6 +76,13 @@
     shell: |
       containerd config default | tee /etc/containerd/config.toml
 
+    - name: Fix cgroups
+      lineinfile:
+        dest: /etc/containerd/config.toml
+        insertafter: '\[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.runc.options\]'
+        line: "            SystemdCgroup = true"
+        state: present
+
   - name: Restarting containerd service
     service:
      name: containerd
@@ -111,8 +118,9 @@
   - name: Fix NetworkManager DNS resolution inside cluster
     lineinfile:
       path: /etc/NetworkManager/NetworkManager.conf
-      insertafter: '#plugins=ifcfg-rh'
+      insertafter: '\#plugins=ifcfg-rh'
       line: "dns=none"
+      state: present
 
   - name: Comment out searchdomains
     lineinfile:
