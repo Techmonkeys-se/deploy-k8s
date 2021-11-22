@@ -76,12 +76,12 @@
     shell: |
       containerd config default | tee /etc/containerd/config.toml
 
-    - name: Fix cgroups
-      lineinfile:
-        dest: /etc/containerd/config.toml
-        insertafter: '\[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.runc.options\]'
-        line: "            SystemdCgroup = true"
-        state: present
+  - name: Fix cgroups
+    lineinfile:
+      dest: /etc/containerd/config.toml
+      insertafter: '\[plugins.\"io.containerd.grpc.v1.cri\".containerd.runtimes.runc.options\]'
+      line: "            SystemdCgroup = true"
+      state: present
 
   - name: Restarting containerd service
     service:
