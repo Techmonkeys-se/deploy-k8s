@@ -25,7 +25,7 @@ bootstrap_token: abcdef.0123456789abcdef
 
 # Choose version you want to install of kubernetes
 # run: yum list --showduplicates kubeadm
-# choose version from availible packages
+# choose version from availible packages but remove the last "-0" from version
 k8s_version: 1.23.0
 
 # Packages that will be installed on all nodes.
