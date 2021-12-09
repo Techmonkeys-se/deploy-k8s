@@ -24,13 +24,15 @@ etcd_proxy_port: 2379
 bootstrap_token: abcdef.0123456789abcdef
 
 # Choose version you want to install of kubernetes
-k8s_version: v1.21.0
+# run: yum list --showduplicates kubeadm
+# choose version from availible packages
+k8s_version: 1.23.0
 
 # Packages that will be installed on all nodes.
 packages:
-- kubeadm
-- kubectl
-- kubelet
+- kubeadm-{{ k8s_version }}
+- kubectl-{{ k8s_version }}
+- kubelet-{{ k8s_version }}
 - iproute-tc
 - firewalld
 - yum-utils 
