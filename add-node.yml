@@ -5,10 +5,10 @@
 #  become: yes
 
 - name: Verify limit is set
-fail:
-  msg: 'Usage: ansible-playbook -i inventory/k8shosts add-node.yml --limit <FQDN>'
-when: ansible_limit is not defined
-run_once: true
+  fail:
+    msg: 'Usage: ansible-playbook -i inventory/k8shosts add-node.yml --limit <FQDN>'
+  when: ansible_limit is not defined
+  run_once: true
 
   roles:
     - prerequisites
