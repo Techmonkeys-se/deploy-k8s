@@ -1,10 +1,4 @@
 ---
-  - name: Verify limit is set
-    fail:
-      msg: 'Usage: ansible-playbook -i inventory/k8shosts add-node.yml --limit <FQDN>'
-    when: ansible_limit is not defined
-    run_once: true
-
   - name: "Kubeadmn join Worker"
     shell: >
       kubeadm join {{add_worker_token}} --v=5 2>&1 | tee /tmp/kubeadm_init.log
